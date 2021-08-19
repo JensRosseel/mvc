@@ -18,5 +18,10 @@ class Article
     public function formatPublishDate($format = 'DD-MM-YYYY')
     {
         // TODO: return the date in the required format
+        list($year, $month, $dayTime) = explode('-', $format);
+        list($day, $time) = explode(' ', $dayTime);
+        $formattedDate = $day . "-" . $month . "-" . $year;
+
+        return $formattedDate;
     }
 }

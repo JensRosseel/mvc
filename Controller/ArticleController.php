@@ -1,6 +1,8 @@
 <?php
 
 declare(strict_types = 1);
+require_once 'config.php';
+require_once 'Classes/DatabaseManager.php';
 
 class ArticleController
 {
@@ -16,10 +18,14 @@ class ArticleController
     // Note: this function can also be used in a repository - the choice is yours
     private function getArticles()
     {
-        // TODO: prepare the database connection
+        // prepare the database connection
         // Note: you might want to use a re-usable databaseManager class - the choice is yours
-        // TODO: fetch all articles as $rawArticles (as a simple array)
-        $rawArticles = [];
+        $databaseManager = new DatabaseManager($config['host'], $config['user'], $config['password'], $config['dbname']);
+        $databaseManager->connect();
+
+        // fetch all articles as $rawArticles (as a simple array)
+        $sql = "SELECT * FROM articles";
+        $rawArticles = $databaseManager->connection->query($sql)->fetchAll();
 
         $articles = [];
         foreach ($rawArticles as $rawArticle) {
