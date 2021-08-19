@@ -1,8 +1,6 @@
 <?php
 
 declare(strict_types = 1);
-require_once 'config.php';
-require_once 'Classes/DatabaseManager.php';
 
 class ArticleController
 {
@@ -20,6 +18,9 @@ class ArticleController
     {
         // prepare the database connection
         // Note: you might want to use a re-usable databaseManager class - the choice is yours
+        require_once 'config.php';
+        require_once 'Classes/DatabaseManager.php';
+
         $databaseManager = new DatabaseManager($config['host'], $config['user'], $config['password'], $config['dbname']);
         $databaseManager->connect();
 
